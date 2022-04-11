@@ -7,7 +7,7 @@ author:
 
 baseurl: /
 
-source: .
+source: archive
 destination: ./_site
 permalink: /:title
 paginate: 3
