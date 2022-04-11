@@ -5,9 +5,9 @@ author:
   email: "madmb@outlook.es"
   url: "https://madmb.github.io/archive"
 
-baseurl: /archive
+baseurl: /
 
-source: .
+source: /archive
 destination: ./_site
 permalink: /:title
 paginate: 3
