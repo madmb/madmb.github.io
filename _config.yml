@@ -16,7 +16,7 @@ paginate_path: /page/:num/
 defaults:
   -
     scope:
-      path: "/archive"
+      path: ""
       type: "posts"
     values:
       layout: "post"
