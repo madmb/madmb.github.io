@@ -3,9 +3,11 @@ layout: page
 title: About
 ---
 
-[Descargar CV](https://madmb.github.io/curriculum-madmb-v2.0.pdf)
 
-![](https://madmb.github.io/curriculum-2.0.png)
+
+[Ver CV](https://madmb.github.io/curriculum-madmb-v2.0.pdf)
+
+[Ver proyecto FP2 IPTABLES](Miguel_Angel_de_Miguel_Bandera_IPTABLES.v1.1.pdf)
 
 
 
