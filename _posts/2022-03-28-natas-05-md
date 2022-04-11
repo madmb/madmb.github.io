@@ -1,0 +1,30 @@
+---
+title: Natas-05
+published: true
+---
+
+```
+Url del reto: http://natas5.natas.labs.overthewire.org/index.php
+login:natas5
+ pass:iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq
+```
+
+En este reto, nos dice de primeras que no tenemos acceso. No nos dan ninguna pista. En el código html no muestra nada.
+Buscando me encuentro que el valor de la cookie está establecida en 0. Pruebo cambiarle el valor a 1 y al actualizar y voila!
+
+```html
+
+<body>
+<h1>natas5</h1>
+<div id="content">
+Access granted. The password for natas6 is aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1</div>
+</body>
+</html>
+
+```
+
+```    
+natas6:aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1
+```
+
+[Volver al archivo](archive)
