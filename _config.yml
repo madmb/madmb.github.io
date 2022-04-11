@@ -7,7 +7,7 @@ author:
 
 baseurl: /
 
-source: /archive
+source: .
 destination: ./_site
 permalink: /:title
 paginate: 3
@@ -16,7 +16,7 @@ paginate_path: /page/:num/
 defaults:
   -
     scope:
-      path: ""
+      path: "/archive"
       type: "posts"
     values:
       layout: "post"
