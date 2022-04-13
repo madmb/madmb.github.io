@@ -1,0 +1,97 @@
+---
+title: Bandit-12
+published: true
+---
+
+## [](#header-1)Login
+
+```bash
+sshpass -p 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu \
+ssh bandit12@bandit.labs.overthewire.org -p2220
+```
+
+## [](#header-1)Level Goal
+
+```
+The password for the next level is stored in the file data.txt,
+which is a hexdump of a file that has been repeatedly compressed.
+For this level it may be useful to create a directory under /tmp
+in which you can work using mkdir. For example: mkdir /tmp/myname123.
+Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+Commands you may need to solve this level
+grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd, mkdir, cp, mv, file
+```
+
+Tenemos un fichero en hexdump que ha sido comprimido varias veces, la contraseña
+esta en este fichero. Esta vez nos dejan un directorio (/tmp) para crear ficheros.
+
+Primero vamos a pasar el fichero hexdump a binario con el comand xxd
+
+```
+bandit12@bandit:/tmp/gorry$ xxd -r data.txt > data.bin
+cat data bin
+P�^data2.bin=��BZh91AY&SY�O����ڞOv���}?��}��^���������ߣ��;�����4���h�F�F��4LM
+                                                                             @��z��FM��C�hF�C@�4@f��h
+                                                                                                    �4hh��=C%�>X�,�k���1��GY��
+�J�쌑Oϊ��{RBp�Qix�Y�Z!d��j�(�搿ݳ��/��A�#�A�F��0P��v��`�"3�
+
+                                          ��d�bX?��z��2��<��A �n}
+5(3A��
+      wO�R����6�XS{�
+��9?L�P�yB��=z�m?�L�Nt*�7{qP��̜�%"�w9�qm4�� N3�6���K��H䋑[��}!
+                                                             d��3A4$�M~�\ɠJ�C�kUƦ\���\�FSN��&=�[��q	\)�$:��H�t&/�(����]��BB9<s ��h=
+```
+
+Veamos con el comando file que tipo de binario es.
+
+```
+bandit12@bandit:/tmp/gorry$ file -i data.bin
+data.bin: application/gzip; charset=binary
+```
+Vemos que es un archivo comprimido en gzip
+
+```
+bandit12@bandit:/tmp/gorry$ mv data.bin data.gz
+```
+
+Vemos su contenido
+
+```
+bandit12@bandit:/tmp/gorry$ gzip -lv data.gz
+method  crc     date  time           compressed        uncompressed  ratio uncompressed_name
+defla 1d68f798 Apr 13 14:47
+```
+
+
+
+
+
+Con el comando tr podemos solucionar este problema
+
+Para ver como funciona el comando veamos un ejemplo:
+
+```
+bandit11@bandit:~$ echo 'abc' | tr abc 123
+123
+```
+
+Como podemos ver, sustituimos el primer conjunto abc por el segundo
+conjunto 123. Asi que esta vez lo haremos por un rango de 13 posiciones
+
+```
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' 
+```
+Sustituimos el primer conjunto 'A-Za-z' (el abecedario en mayus y minus)
+Lo sustituimos por el segundo conjunto rango 'N-Z-A-Mn-za-m' 
+desde la N hasta la Z y A hasta la M
+desde la n hasta la z y a hasta la m
+
+la salida es:
+
+```
+bandit11@bandit:~$ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+```
+
+[Volver al archivo](archive)
